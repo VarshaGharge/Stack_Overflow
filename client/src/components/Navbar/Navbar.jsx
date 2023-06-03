@@ -30,7 +30,7 @@ const Navbar = () => {
             }
         }
         dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
-    },[dispatch])
+    },[User?.token,dispatch])
 
     return (
         <nav className='main-nav'>
