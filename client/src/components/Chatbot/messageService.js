@@ -6,7 +6,7 @@ export const SMSAuthenticator = () => {
   const [ verified,setVerified ] = useState(true);
   
   const sendSMS = async (phoneNumber) => {
-      const apiUrl = 'http://localhost:5000/sendsms';
+      const apiUrl = 'https://stack-overflow-clone-hih1.onrender.com/sendsms';
   
       const payload = {
         to : phoneNumber
@@ -29,7 +29,7 @@ export const SMSAuthenticator = () => {
     };
   
     const verifyOTP = async (otp) => {
-      const apiUrl = 'http://localhost:5000/verifyOTP';
+      const apiUrl = 'https://stack-overflow-clone-hih1.onrender.com/verifyOTP';
   
       const payload = {
         "id" : id,

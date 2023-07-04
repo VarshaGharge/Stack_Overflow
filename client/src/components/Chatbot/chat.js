@@ -33,7 +33,7 @@ function Chat() {
 
     if (isAuthenticated) {
       setMessage("");
-      fetch("http://localhost:5000/chat", {
+      fetch("https://stack-overflow-clone-hih1.onrender.com/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

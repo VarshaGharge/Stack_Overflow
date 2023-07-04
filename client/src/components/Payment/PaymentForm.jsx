@@ -59,7 +59,7 @@ const PaymentForm = () => {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:5000/payment/pay", {
+        const response = await axios.post("https://stack-overflow-clone-hih1.onrender.com/payment/pay", {
           id,
           price: plan?.price,
         });
