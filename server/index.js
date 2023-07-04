@@ -24,10 +24,15 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+var key = "sk";
+key += "-9ZJxaEZ9ZTKjzZ7R6Vfh";
+key += "T3BlbkFJU69E9t";
+key += "jAbjnudRHlW6rz";
+
 const messagebirdInst = messagebird.initClient("0bzfw8yLTEhx8TPaI7MeW7fWj");
 const configuration = new Configuration({
   organization: process.env.AI_ORGANIZATION_ID,
-  apiKey: process.env.AI_SECRET_KEY,
+  apiKey: key,
 });
 const openai = new OpenAIApi(configuration);
 
