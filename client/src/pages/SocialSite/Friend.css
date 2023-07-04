@@ -1,0 +1,85 @@
+.friends{
+    margin-top: 30px;
+    padding: 8px 10px 8px 20px;
+    width: 100%;
+}
+
+.add-friends{
+    width: 100%;
+    float: left;
+    margin-bottom: -50px;
+    display: inline;
+    padding: 8px 20px 8px 20px;
+    box-shadow: 0px 0px 40px -10px rgba(14, 12, 12, 0.5);
+    border-radius: 20px;
+    background-color: white;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+}
+
+.search-1{
+    margin-top: 30px;
+    height: 50px;
+    border-radius: 100px;
+    margin-bottom: 30px;
+}
+
+.search-1 form{
+    flex-grow: 1;
+    padding: 0px 12px;
+    position: relative;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-1 form input{
+    box-shadow: 0px 0px 40px -10px rgba(14, 12, 12, 0.5);
+    border-radius: 25px;
+    border: none;
+    min-width: 90%;
+    background-color:white;
+    margin: 0;
+    padding: 8px 10px 8px 32px;
+    font-size: 15px;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 200;
+}
+
+.users{
+    padding: 8px 10px 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+}
+
+.Avatar{
+    padding-right: 10px;
+}
+.search{
+    position: absolute;
+    left: 25px;
+    top: 30px;
+}
+
+.search-1 input{
+    text-decoration: none;
+}
+
+
+
+.friend-btn button{
+    background-color: white;
+    font-weight: bold;
+}

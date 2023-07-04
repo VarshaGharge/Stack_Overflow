@@ -1,22 +1,31 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./HomeMainbar.css";
 import QuestionList from "./QuestionList";
+import { questionLimit } from "../../actions/question";
 
 const HomeMainbar = () => {
   const location = useLocation();
-  const user = 1;
+  const user = useSelector(state => state.currentUserReducer);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const questionsList = useSelector((state) => state.questionsReducer);
 
   const checkAuth = () => {
     if (user === null) {
       alert("login or signup to ask a question");
+      return false;
+    } 
+    return true;
+  };
+
+  const validateLimit = () => {
+    if(!checkAuth()){
       navigate("/Auth");
-    } else {
-      navigate("/AskQuestion");
+    }else {
+      dispatch(questionLimit(user.result._id,navigate));
     }
   };
 
@@ -28,7 +37,7 @@ const HomeMainbar = () => {
         ) : (
           <h1>All Questions</h1>
         )}
-        <button onClick={checkAuth} className="ask-btn">
+        <button onClick={validateLimit} className="ask-btn">
           Ask Question
         </button>
       </div>

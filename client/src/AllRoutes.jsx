@@ -9,6 +9,10 @@ import DisplayQuestion from './pages/Questions/DisplayQuestion'
 import Tags from './pages/Tags/Tags'
 import Users from './pages/Users/Users'
 import UserProfile from './pages/UserProfile/UserProfile'
+import Plans from './pages/Plans/Plans'
+import Post from './pages/SocialSite/Post'
+import Friends from './pages/SocialSite/Friends.jsx'
+import PlanDetail from './pages/Plans/PlanDetail'
 
 const AllRoutes = () => {
   return (
@@ -21,6 +25,10 @@ const AllRoutes = () => {
         <Route path = '/Questions/:id' element={<DisplayQuestion/>} />
         <Route path = '/Users' element={<Users/>} />
         <Route path = '/Users/:id' element={<UserProfile/>} />
+        <Route path = '/Plans' element={<Plans/>} />
+        <Route path = '/Payment/:id' element={<PlanDetail/>} />
+        <Route path = '/Post' element={<Post/>} />
+        <Route path = '/Post/Add_Friends' element={<Friends/>} /> 
     </Routes>
   )
 }

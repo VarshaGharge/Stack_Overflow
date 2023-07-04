@@ -21,6 +21,20 @@ export const fetchAllQuestions = () => async (dispatch) => {
   }
 };
 
+export const questionLimit = (userId,navigate) => async (dispatch) => {
+  try {
+    console.log("Here",userId);
+    const { data } = await api.questionLimit(userId);
+    if(data.limitExceeded){
+      alert("You've reached your daily limit");
+    }else{
+      navigate("/AskQuestion");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const voteQuestion = (id, value) => async (dispatch) => {
   try {
     await api.voteQuestion(id, value);

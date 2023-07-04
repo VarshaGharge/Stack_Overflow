@@ -10,7 +10,7 @@ import { deleteAnswer } from '../../actions/question.js'
 const DisplayAnswer = ({question, handleShare}) => {
 
   const User = useSelector((state) => (state.currentUserReducer))
-  const { id } = useParams()
+  const { id } = useParams();
   const dispatch = useDispatch()
 
   const handleDelete = (answerId, noOfAnswers) => {

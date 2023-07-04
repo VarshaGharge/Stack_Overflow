@@ -1,0 +1,58 @@
+.comment form{
+    padding: 20px;
+    display: flex;
+    flex-grow: 1;
+    }
+
+.comment form input{
+    flex:5;
+    margin: 0;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    border: solid 1px #0000003e;
+    border-radius: 3px;
+}
+
+.send-btn{
+    padding: 30px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.container{
+    display: flex;
+}
+
+.post-actions-user{
+    padding-right: 20px;
+    height: 10%;
+}
+
+
+
+.comment-body{
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #fdf7e2;
+    border-top-left-radius: 0;
+}
+
+.delete-comment{
+    justify-content: right;
+}
+
+.component{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.comment-time{
+    font-size: 13px;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}

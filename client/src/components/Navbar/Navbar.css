@@ -40,6 +40,12 @@
     cursor: pointer;
     border-radius: 20px;
     padding: 10px 20px;
+    border: none;
+    font-size: small;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(69,69,69);
+    transition: 0.2s;
 }
 
 .nav-item:hover{
@@ -62,7 +68,7 @@
     border-radius: 3px;
 }
 
-.navbar form .search-icon{
+.search-icon{
     position: absolute;
     left: 25px;
     top: 8px;
@@ -79,3 +85,4 @@
 .nav-links:hover{
     background-color: #d3e4eb;
 }
+

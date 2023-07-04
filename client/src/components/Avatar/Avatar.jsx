@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Avatar = ({ children, backgroundColor, px, py, color, borderRadius, fontSize, cursor }) => {
+const Avatar = ({ children, backgroundColor, fontWeight, px, py, color, borderRadius, fontSize, cursor, height }) => {
   const style = {
+    height,
     backgroundColor,
+    fontWeight,
     padding: `${py} ${px}` ,
     color: color || 'black',
     borderRadius,

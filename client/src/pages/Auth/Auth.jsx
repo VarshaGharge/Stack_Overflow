@@ -12,6 +12,7 @@ const Auth = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -35,10 +36,11 @@ const Auth = () => {
     }
 
   return (
+    
     <section className='auth-section'>
         { isSignup && <AboutAuth /> }
         <div className='auth-container-2'>
-            { !isSignup && <img src={icon} alt='stack overflow' className='login-logo' width='75'/>}
+            { !isSignup && <img src={icon} alt='stack overflow' className='login-logo' width='120'/>}
             <form onSubmit={handleSubmit}>
                 {
                     isSignup &&
@@ -83,8 +85,10 @@ const Auth = () => {
                 <button type='button' className='handle-switch-btn' onClick={handleSwitch}>{ isSignup ? 'Log In': 'Sign Up' }</button>
             </p>
         </div>
-
+        
     </section>
+   
+
   )
 }
 

@@ -9,16 +9,18 @@ import downvote from '../../assets/sort-down.svg'
 import './Questions.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer.jsx'
-import { postAnswer, deleteQuestion, voteQuestion } from '../../actions/question.js'
+import { postAnswer, deleteQuestion, voteQuestion } from '../../actions/question.js' 
 
 const QuestionsDetails = () => {
-    const { id } = useParams()
+    const { id } = useParams();
     const questionsList = useSelector((state) => state.questionsReducer);
 
 
     const [Answer, setAnswer] = useState(' ') 
+    
     const Navigate = useNavigate()
     const dispatch = useDispatch()
+
     const User = useSelector((state) => (state.currentUserReducer))
     const location = useLocation()
     const url = 'http://localhost:3000/'
@@ -126,7 +128,7 @@ const QuestionsDetails = () => {
                         <section className="post-ans-container">
                             <h3>Your Answer</h3>
                             <form onSubmit={(e) => {handlePostAns(e, question.answer.length);}}>
-                                <textarea name="" id="" cols="30" rows="10" value={Answer}onChange={(e) => setAnswer(e.target.value)}></textarea>
+                                <textarea name="" id="" cols="30" rows="10" value={Answer} onChange={(e) => setAnswer(e.target.value)}></textarea>
                                 <br />
                                 <input type="submit" className="post-ans-btn" value="Post Your Answer"/>
                             </form>

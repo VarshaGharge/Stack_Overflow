@@ -1,9 +1,13 @@
 import React from 'react'
-import './LeftSidebar.css'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import Globe from '../../assets/Globe.png'
+import './LeftSidebar.css'
 
 const LeftSidebar = () => {
+  var User = useSelector(state => state.currentUserReducer)
+
   return (
     <div className='left-sidebar'>
       <nav className='side-nav'>
@@ -22,6 +26,21 @@ const LeftSidebar = () => {
           <NavLink to='/Users' className='side-nav-links' style={{ paddingLeft:"40px" }}>
             <p>Users</p>
           </NavLink>
+          { User === null ? 
+            <NavLink to='/Auth' className='side-nav-links' style={{ paddingLeft:"40px" }}>
+              <p>Explore</p>
+            </NavLink>:
+            <>
+            <NavLink to='/Post' className='side-nav-links' style={{ paddingLeft:"40px" }}>
+              <p>Explore</p>
+            </NavLink>
+          </>
+          }
+          {User !== null && User.result.plan !== "GOLD" && (
+            <NavLink to='/Plans' className='side-nav-links' style={{ paddingLeft:"40px" }}>
+              <p>Upgrade</p>
+            </NavLink>
+          )}
         </div>
       </nav>
       
