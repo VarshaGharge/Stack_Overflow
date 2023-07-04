@@ -25,7 +25,7 @@ const PaymentForm = () => {
   const plans = useSelector((state) => state.planReducer);
   const plan = plans.filter((p) => p._id === id)[0];
   const User = useSelector((state) => state.currentUserReducer);
-  var divContainer = null;
+  var [divContainer, setDivContainer] = useState(null);
   const [client_secret_key,setClientSecretKey] = useState(null);
   const [navigateUrl, setNavigateUrl] = useState(null);
 
@@ -108,7 +108,7 @@ const PaymentForm = () => {
   };
 
   const addFrame = () => {
-    divContainer = document.getElementById("paymentSuccessFrame");
+    setDivContainer(document.getElementById("paymentSuccessFrame"));
     if (divContainer) {
       var iframe = document.createElement("iframe");
       iframe.src = navigateUrl;
@@ -122,7 +122,7 @@ const PaymentForm = () => {
       }, false);
     }
   };
-  useEffect(addFrame, [navigateUrl]);
+  useEffect(addFrame, [divContainer, navigateUrl]);
   return (
     <div className="plan-1">
       {!success ? (

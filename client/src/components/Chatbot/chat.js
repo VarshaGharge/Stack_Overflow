@@ -104,17 +104,6 @@ function Chat() {
     setIsTyping(false);
   };
 
-  const welcomeMessage = () => {
-    let msgs = chats;
-    const welcomeMsg = {
-      role: "assistant",
-      content:
-        "Hello Pal! Please enter your number to validate (e.g +xx xxxxx xxxxx)",
-    };
-    postMessages(msgs, welcomeMsg);
-    setUserState("Phone");
-  };
-
   return (
     <>
       <div
