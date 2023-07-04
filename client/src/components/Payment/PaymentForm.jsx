@@ -122,6 +122,7 @@ const PaymentForm = () => {
       }, false);
     }
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(addFrame, [divContainer, navigateUrl]);
   return (
     <div className="plan-1">
