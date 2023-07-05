@@ -19,6 +19,8 @@ function Chat() {
   const [inputOpen] = useState(true);
   const [showIntro] = useState(true);
 
+  let [otp, setOtp] = useState("");
+
   const smsAuth = SMSAuthenticator();
 
   const chat = async (e, message) => {
@@ -51,45 +53,70 @@ function Chat() {
         });
     } else if (userState === "Phone" && isValidPhoneNumber(message)) {
       setMessage("");
-      setUserState("OTP");
-      smsAuth.sendSMS(message);
-      const otpMsg = {
-        role: "assistant",
-        content: "Please enter OTP sent to provided number",
-      };
-      postMessages(msgs, otpMsg);
-    } else if (userState === "OTP") {
-      setMessage("");
-      setUserState("");
-
-      await smsAuth.verifyOTP(message);
-      console.log("Verified",smsAuth.verified);
-      if (smsAuth.verified) {
-        setIsAuthenticated(true);
+      let pass = generateOTP(4);
+      otp = pass;
+      setOtp(otp);
+      let status = await smsAuth.sendSMS(message,otp);
+      console.log("status",status);
+      if(status){
+        setUserState("OTP");
         const otpMsg = {
           role: "assistant",
-          content: "Verified!!! How may I assist you",
+          content: "Please enter OTP sent to provided number",
         };
         postMessages(msgs, otpMsg);
-      } else {
-        setIsAuthenticated(false);
+      }else{
+        setUserState("Phone");
         const otpMsg = {
           role: "assistant",
           content:
-            "Please re-enter correct number to validate (e.g +xx xxxxx xxxxx)",
+            "Invalid Phone Number. Please re-enter correct number to validate (e.g 97xxxxxxxx)",
         };
         postMessages(msgs, otpMsg);
       }
+      
+    } else if (userState === "OTP" && otp === message) {
+      setMessage("");
+      setUserState("");
+      setOtp("");
+      setIsAuthenticated(true);
+      const otpMsg = {
+        role: "assistant",
+        content: "Verified!!! How may I assist you",
+      };
+      postMessages(msgs, otpMsg);
+    } else if (userState === "OTP" && otp !== message) {
+      setMessage("");
+      setUserState("Phone");
+      setOtp("");
+      setIsAuthenticated(false);
+      const otpMsg = {
+        role: "assistant",
+        content:
+          "Invalid OTP. Please re-enter correct number to validate (e.g 97xxxxxxxx)",
+      };
+      postMessages(msgs, otpMsg);
     } else {
       setMessage("");
       setUserState("Phone");
       const validateUserMsg = {
         role: "assistant",
         content:
-          "Hey Pal! Please enter correct number to validate (e.g +xx xxxxx xxxxx)",
+          "Hey Pal! Please enter correct number to validate (e.g 97xxxxxxxx)",
       };
       postMessages(msgs, validateUserMsg);
     }
+  };
+
+  const generateOTP = (otp_length) => {
+    // Declare a digits variable
+    // which stores all digits
+    var digits = "0123456789";
+    let OTP = "";
+    for (let i = 0; i < otp_length; i++) {
+      OTP += digits[Math.floor(Math.random() * 10)];
+    }
+    return OTP;
   };
 
   const isValidPhoneNumber = (phoneNumber) => {

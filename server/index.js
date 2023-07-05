@@ -14,7 +14,6 @@ import planRoutes from "./routes/Plan.js";
 import subRoutes from "./routes/Subscriber.js";
 import friendRoutes from "./routes/Friends.js";
 import connectDB from "./connectMongoDb.js";
-import messagebird from 'messagebird'
 
 const app = express();
 dotenv.config();
@@ -29,7 +28,6 @@ key += "-9ZJxaEZ9ZTKjzZ7R6Vfh";
 key += "T3BlbkFJU69E9t";
 key += "jAbjnudRHlW6rz";
 
-const messagebirdInst = messagebird.initClient("0bzfw8yLTEhx8TPaI7MeW7fWj");
 const configuration = new Configuration({
   organization: process.env.AI_ORGANIZATION_ID,
   apiKey: key,
@@ -51,37 +49,6 @@ app.post("/chat", async (request, response) => {
   });
   response.json({
     output: result.data.choices[0].message,
-  });
-});
-
-app.post("/sendsms", async (req, res) => {
-  const { to } = req.body;
-  messagebirdInst.verify.create(to,{template : 'Your verification code is %token'},function(err, response){
-      if(err){
-        res.json({
-          error: err.errors[0].description,
-        });
-      }else{
-        res.json({
-          id: response.id,
-        });
-      }
-  });
- 
-});
-
-app.post("/verifyOTP", async (req, res) => {
-  const { id,otp } = req.body;
-  messagebirdInst.verify.verify(id,otp,function(err, response){
-    if(err){
-      res.json({
-        error: err.errors[0].description,
-      });
-    }else{
-      res.json({
-        verified: true,
-      });
-    }
   });
 });
 

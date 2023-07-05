@@ -2,57 +2,35 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export const SMSAuthenticator = () => {
-  const [id, setId] = useState(-1);
-  const [ verified,setVerified ] = useState(true);
+  let [ verified,setVerified ] = useState(false);
   
-  const sendSMS = async (phoneNumber) => {
-      const apiUrl = 'https://stack-overflow-clone-hih1.onrender.com/sendsms';
-  
-      const payload = {
-        to : phoneNumber
-      };
+  const sendSMS = async (phoneNumber,otp) => {
+      const apiUrl = 'https://www.fast2sms.com/dev/bulkV2?authorization=o70DOb2YEjIJuexQszPyGB91gc6X4AmvlLMirNRSZChwFWdaf3UyITjoO8EVGNFdZPYQbvXrD40Rwcks&route=otp&variables_values='+otp+'&flash=0&numbers='+phoneNumber;
     
       try {
-        const response = await axios.post(apiUrl, payload);
-        if(!response.data.error){
-          setId(response.data.id);
-          console.log('SMS sent successfully:', response.data);
+        const response = await axios.get(apiUrl);
+        if(response.data.message && response.data.message[0] === "SMS sent successfully."){
+          verified = true;
+          setVerified(verified);
+          console.log('SMS sent successfully');
           // Handle success response here
         }else{
-          console.log(response.data.error);
+          console.log(response.data.message);
+          verified = false;
+          setVerified(verified);
         }
         
       } catch (error) {
-        console.error('Error sending SMS:', error.response.data);
+        console.log('Error sending SMS:', error.response.data);
+        verified = false;
+        setVerified(verified);
         // Handle error response here
       }
+      return verified;
     };
   
-    const verifyOTP = async (otp) => {
-      const apiUrl = 'https://stack-overflow-clone-hih1.onrender.com/verifyOTP';
-  
-      const payload = {
-        "id" : id,
-        "otp" : otp
-      };
-    
-      try {
-        const response = await axios.post(apiUrl, payload);
-        if(!response.data.error){
-          setVerified(response.data.verified);
-          // Handle success response here
-        }else{
-          console.log(response.data.error);
-        }
-        // Handle success response here
-      } catch (error) {
-        console.error('Error sending SMS:', error.response.data);
-        // Handle error response here
-      }
-    };
     return {
       sendSMS,
-      verifyOTP,
       verified
     };
 }
