@@ -45,7 +45,7 @@ export const questionLimit = async (req, res) => {
     const entries = await Questions.find({ userId, askedOn: { $gte: today } });
     console.log("User",user);
     console.log("entries",entries.length);
-    if((user.plan == "free" && entries.length >= 1) || (user.plan == "SILVER" && entries.length >= 5)){
+    if(((user.plan == "free" || user.plan == "Free") && entries.length >= 1) || ((user.plan == "SILVER" || user.plan == "silver" ) && entries.length >= 5)){
       res.status(200).json({limitExceeded : true});
     }else{
       res.status(200).json({limitExceeded : false});

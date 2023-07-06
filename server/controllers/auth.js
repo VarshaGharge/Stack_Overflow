@@ -34,8 +34,8 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
     var message = "User logged in successfully";
-    if(existinguser.plan != "Free" && existinguser.planDate < new Date()){
-      existinguser.plan = "Free";
+    if(existinguser.plan != "free" && existinguser.planDate < new Date()){
+      existinguser.plan = "free";
       existinguser.planDate = Date.now();
       await User.findByIdAndUpdate(existinguser.id, existinguser);
     }
